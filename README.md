@@ -4,15 +4,16 @@ Evidence-first investment research workflow for claim-level traceability and cro
 
 ## Current prototype
 
-The current version reads multiple TXT files, turns non-empty lines into temporary ledger records, attaches deterministic source metadata, saves the ledger as JSON, and generates a simple HTML review page.
+The current version reads multiple TXT files, groups source text into context-preserving chunks, attaches deterministic source metadata, saves the ledger as JSON, and generates a simple HTML review page.
 
 Current fields include:
 
 - `claim_id`
 - `document_id`
 - `source_text`
-- `source_line`
-- `evidence_status` (currently a test placeholder)
+- `source_line_start`
+- `source_line_end`
+- `evidence_status` (currently a test placeholder until the LLM layer is restored)
 
 ## Why this project exists
 
@@ -27,15 +28,17 @@ This repository is an early prototype, not a finished product.
 Implemented:
 
 - Multi-file TXT ingestion
+- Relative project paths
 - Source document tracking
-- Source line tracking
+- Source line-range tracking
 - Deterministic claim IDs
+- Context-preserving chunk baseline
 - JSON persistence
 - HTML review output
 
 Not yet implemented:
 
-- LLM-based semantic claim extraction
+- LLM-based semantic claim extraction from chunks
 - Attribution extraction and preservation
 - Reliable evidence-status classification
 - Cross-document claim matching
@@ -43,9 +46,44 @@ Not yet implemented:
 - PDF input
 - GUI / drag-and-drop workflow
 
+## Setup
+
+This project uses a bring-your-own-key (BYOK) setup. Each user supplies their own OpenRouter API key; no shared project API key is included in the repository.
+
+1. Clone or download the repository.
+2. Install the Python dependency:
+
+```bash
+pip install openai
+```
+
+3. Copy `.env.example` to `.env` and replace the placeholder with your own OpenRouter API key:
+
+```text
+OPENROUTER_API_KEY=your_api_key_here
+```
+
+4. Make the key available as an environment variable before running the program. The current prototype reads it with:
+
+```python
+os.getenv("OPENROUTER_API_KEY")
+```
+
+5. Run:
+
+```bash
+python main.py
+```
+
+The local `.env` file is ignored by Git and should never be committed.
+
+> Note: the current prototype does not yet automatically load `.env`; automatic `.env` loading will be added later. Until then, the environment variable must be available to the Python process.
+
 ## Next milestone
 
-The next milestone is to reconnect the LLM semantic layer so that the system extracts genuine claims from context-preserving text chunks while Python continues to manage deterministic provenance fields. After that, the project will move toward cross-document matching and discrepancy flags.
+The next milestone is to reconnect the LLM semantic layer so that the system treats each chunk as an extraction context rather than as a claim itself. One chunk may therefore produce zero, one, or multiple semantic claims. Python will continue to manage deterministic provenance fields such as document IDs and source locations.
+
+After that, the project will move toward attribution preservation, cross-document matching, and discrepancy flags.
 
 ## Design principle
 
