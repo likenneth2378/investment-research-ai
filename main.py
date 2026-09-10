@@ -8,10 +8,11 @@ client = OpenAI(
     base_url = "https://openrouter.ai/api/v1"
 )
 
+project_dir = Path(__file__).parent
 
 company_files = [
-    Path(r"C:\Users\23782\Desktop\InvestmentResearchAI\test_company.txt"),
-    Path(r"C:\Users\23782\Desktop\InvestmentResearchAI\test_company_2.txt")
+    project_dir / "test_company.txt",
+    project_dir / "test_company_2.txt"
 ]
 
 claim_ledger = []
