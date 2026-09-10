@@ -222,6 +222,59 @@ Not yet implemented. This is one of the main product-value milestones after sema
 
 ---
 
+## 7. Fixed-size chunking mixes unrelated claims
+
+**Observed behavior**
+
+A simple baseline grouped every three non-empty lines into one chunk. This preserved some local context, but it also produced blocks such as:
+
+> 材料 A：公司融资材料
+>
+> 澜途储能科技有限公司
+>
+> 成立于2021年，主营工商业储能系统及能源管理软件。
+
+and:
+
+> 公司称：
+>
+> 创始人兼 CEO 陈浩，曾任某头部新能源企业储能事业部技术负责人。
+>
+> 陈浩持股38%，联合创始人王启明持股17%，员工持股平台10%，A轮投资机构持股15%，其余由早期股东持有。
+
+The same problem appeared in later chunks that combined project count, historical revenue, forecast revenue, product-performance claims, patents, and financing terms simply because they happened to be adjacent.
+
+**Why it matters**
+
+A fixed line count is a transport rule, not a semantic boundary. Treating each chunk as if it were one claim makes the ledger less precise and can merge statements that should later be reviewed, classified, or compared independently.
+
+**Hypothesis**
+
+Chunking should provide enough context for extraction, but the chunk itself should not be treated as the final claim unit.
+
+**Design response**
+
+Changed the conceptual model from:
+
+`chunk = claim`
+
+to:
+
+`chunk = extraction context`
+
+The intended next workflow is:
+
+1. Python builds a small context-preserving window with source-line metadata.
+2. The LLM extracts zero, one, or multiple claims from that window.
+3. Each extracted claim keeps its original `source_text` and attribution context.
+4. Python then assigns deterministic provenance such as `document_id`, source location, and `claim_id`.
+
+**Current status**
+
+Baseline failure reproduced in the HTML output. The fixed-size chunker is retained as a simple baseline, not as the final extraction strategy.
+
+---
+
 ## Evaluation principle
 
 The project should not be evaluated only on whether an LLM can produce fluent output.
@@ -234,5 +287,6 @@ A more useful evaluation asks:
 - Are measurable but unsupported claims treated as evidence problems rather than merely “marketing”?
 - Is the output machine-valid and schema-complete?
 - Can the workflow surface cross-document discrepancies without inventing a conclusion?
+- Does chunking preserve enough context without turning arbitrary text windows into false claim boundaries?
 
 These failure cases are kept as regression tests and product-design evidence rather than hidden as implementation mistakes.
