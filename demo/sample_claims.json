@@ -1,0 +1,86 @@
+{
+  "01_管理层访谈:0": [
+    {
+      "claim": "公司表示，截至2026年3月已累计完成27个工商业储能项目。",
+      "source_text": "公司表示，截至2026年3月，已累计完成27个工商业储能项目。",
+      "attribution": "公司/管理层访谈",
+      "evidence_status": "Unverified"
+    },
+    {
+      "claim": "管理层预计2026年全年营收达到3亿元。",
+      "source_text": "管理层预计2026年全年营收达到3亿元。",
+      "attribution": "管理层",
+      "evidence_status": "Projection"
+    }
+  ],
+  "02_投资人材料:0": [
+    {
+      "claim": "截至2026年6月，公司累计完成30个工商业储能项目。",
+      "source_text": "截至2026年6月，公司累计完成30个工商业储能项目。",
+      "attribution": "公司投资人材料",
+      "evidence_status": "Unverified"
+    },
+    {
+      "claim": "公司将自己定位为国内领先的工商业储能服务商。",
+      "source_text": "公司将自己定位为“国内领先的工商业储能服务商”。",
+      "attribution": "公司",
+      "evidence_status": "Subjective / Marketing"
+    }
+  ],
+  "03_更新预算:0": [
+    {
+      "claim": "管理层将2026年全年营收目标调整为3.2亿元。",
+      "source_text": "管理层将2026年全年营收目标调整为3.2亿元。",
+      "attribution": "管理层",
+      "evidence_status": "Projection"
+    },
+    {
+      "claim": "3.2亿元为内部经营目标，尚未形成已实现收入。",
+      "source_text": "该目标为内部经营计划，尚未形成已实现收入。",
+      "attribution": "公司更新预算",
+      "evidence_status": "Supported"
+    }
+  ],
+  "04_知识产权说明:0": [
+    {
+      "claim": "公司称目前涉及11项核心专利，其中5项为合作开发。",
+      "source_text": "公司称目前涉及11项核心专利，其中5项为合作开发。",
+      "attribution": "公司",
+      "evidence_status": "Unverified"
+    },
+    {
+      "claim": "其中3项仍处于申请或开发阶段，尚未形成已授权专利。",
+      "source_text": "其中3项仍处于申请或开发阶段，尚未形成已授权专利。",
+      "attribution": "公司知识产权说明",
+      "evidence_status": "Unverified"
+    }
+  ],
+  "00_公司概览:0": [
+    {
+      "claim": "公司材料称，公司聚焦工商业储能系统集成与能源管理服务。",
+      "source_text": "公司聚焦工商业储能系统集成与能源管理服务。",
+      "attribution": "公司材料",
+      "evidence_status": "Unverified"
+    }
+  ],
+  "05_团队与组织:0": [
+    {
+      "claim": "公司现有员工86人，其中研发人员52人。",
+      "source_text": "公司现有员工86人，其中研发人员52人。",
+      "attribution": "公司材料",
+      "evidence_status": "Unverified"
+    },
+    {
+      "claim": "公司称研发团队中有12名博士。",
+      "source_text": "研发团队中有12名博士。",
+      "attribution": "公司",
+      "evidence_status": "Unverified"
+    },
+    {
+      "claim": "公司核心管理团队包括CEO、CTO与销售负责人。",
+      "source_text": "核心管理团队包括CEO、CTO与销售负责人。",
+      "attribution": "公司材料",
+      "evidence_status": "Unverified"
+    }
+  ]
+}

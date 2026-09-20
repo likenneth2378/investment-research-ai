@@ -1,3 +1,23 @@
 .env
+.env.*
+.streamlit/secrets.toml
 __pycache__/
 *.pyc
+
+# Local/private research materials
+private/
+uploads/
+local_data/
+
+# Generated runtime output
+output/*.pdf
+output/*.docx
+output/*.pptx
+
+# Prevent accidental publication of uploaded diligence materials / local exports
+*.pdf
+*.docx
+*.pptx
+investment_research*.json
+claim_ledger*.json
+claim_ledger*.html
